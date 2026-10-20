@@ -19,7 +19,7 @@ function NotFound() {
 
 export default function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/ebrahim-akbari-massage">
       <Routes>
         <Route element={<MainLayout />}>
           <Route path="/" element={<Home />} />
