@@ -1,3 +1,4 @@
+import {link} from "react-router-dom"
 import '../../App.css';
 
 const quickLinks = [
@@ -166,10 +167,10 @@ export default function Footer() {
             <ul className="akbari-footer__links">
               {quickLinks.map((item) => (
                 <li key={item.label}>
-                  <a href={item.href}>
+                  <Link to={item.href}>
                     <span>{item.label}</span>
                     <ChevronIcon />
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -180,10 +181,10 @@ export default function Footer() {
             <ul className="akbari-footer__links">
               {services.map((service) => (
                 <li key={service}>
-                  <a href="/services">
+                  <Link to="/services">
                     <span>{service}</span>
                     <ChevronIcon />
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -226,7 +227,7 @@ export default function Footer() {
             </summary>
             <ul className="akbari-footer__links akbari-footer__links--mobile">
               {quickLinks.map((item) => (
-                <li key={item.label}><a href={item.href}>{item.label}</a></li>
+                <li key={item.label}><Link to={item.href}>{item.label}</Link></li>
               ))}
             </ul>
           </details>
@@ -238,7 +239,7 @@ export default function Footer() {
             </summary>
             <ul className="akbari-footer__links akbari-footer__links--mobile">
               {services.map((service) => (
-                <li key={service}><a href="#services">{service}</a></li>
+                <li key={service}><Link to="/services">{service}</Link></li>
               ))}
             </ul>
           </details>
