@@ -1,0 +1,117 @@
+.hero {
+  position: relative;
+  width: 100%;
+  min-height: 650px;
+  background-image: url("/src/images/homepage-hero.webp");
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+/* لایه برای خوانایی متن روی تصویر */
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    rgba(48, 56, 44, 0.65),
+    rgba(48, 56, 44, 0.15)
+  );
+  pointer-events: none;
+}
+
+/* محتوای هیرو */
+.hero > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* تبلت */
+@media (max-width: 1024px) {
+  .hero {
+    min-height: 550px;
+    background-position: center right;
+  }
+}
+
+/* موبایل */
+@media (max-width: 767px) {
+  .hero {
+    min-height: 500px;
+    background-position: center right;
+  }
+
+  .hero::before {
+    background: linear-gradient(
+      90deg,
+      rgba(48, 56, 44, 0.7),
+      rgba(48, 56, 44, 0.3)
+    );
+  }
+}
+
+/* موبایل کوچک */
+@media (max-width: 480px) {
+  .hero {
+    min-height: 450px;
+  }
+}
+.about-preview-image {
+  width: 100%;
+  max-width: 480px;
+  aspect-ratio: 4 / 3;
+  height: auto;
+
+  background-image: url("/src/images/ebrahim-akbari.webp");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+@media (max-width: 1024px) {
+  .about-preview-image {
+    max-width: 400px;
+  }
+}
+
+@media (max-width: 767px) {
+  .about-preview-image {
+    max-width: 100%;
+    margin-inline: auto;
+  }
+}
+.location-preview-image {
+  width: 100%;
+  max-width: 480px;
+  aspect-ratio: 4 / 3;
+  height: auto;
+
+  background-image: url("/src/images/massage-room.webp");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+@media (max-width: 1024px) {
+  .location-preview-image {
+    max-width: 400px;
+  }
+}
+
+@media (max-width: 767px) {
+  .location-preview-image {
+    max-width: 100%;
+    margin-inline: auto;
+  }
+}
