@@ -86,9 +86,6 @@ export default function Header() {
           ))}
 
           <div className="mobile-actions">
-            <span className="mobile-language-indicator">
-              فارسی <span aria-hidden="true">|</span> English
-            </span>
 
             <Link
               to="/reservation"

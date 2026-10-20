@@ -2,7 +2,7 @@ import {Link} from "react-router-dom"
 import '../../App.css';
 
 const quickLinks = [
-  { label: 'خانه', href: '/home' },
+  { label: 'خانه', href: '/' },
   { label: 'خدمات', href: '/services' },
   { label: 'درباره من', href: '/about' },
   { label: 'تماس با من', href: '/contact' },
