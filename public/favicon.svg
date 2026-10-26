@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <title>Ebrahim Akbari Massage</title>
+  <defs>
+    <linearGradient id="gold" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#d9b97e"/>
+      <stop offset="1" stop-color="#b9955d"/>
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="14" fill="#11110f"/>
+  <!-- side petals -->
+  <path d="M32 46C19 44 13 35 14 24c10 2 16 10 18 22Z" fill="#b9955d"/>
+  <path d="M32 46c13-2 19-11 18-22-10 2-16 10-18 22Z" fill="#b9955d"/>
+  <!-- center petal -->
+  <path d="M32 13c7 8 9 19 0 33-9-14-7-25 0-33Z" fill="url(#gold)"/>
+  <!-- base -->
+  <path d="M15 50c9 5 25 5 34 0" fill="none" stroke="#8fa070" stroke-width="3" stroke-linecap="round"/>
+</svg>

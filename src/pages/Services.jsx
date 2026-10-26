@@ -45,8 +45,17 @@ const services = [
     suitableFor: "مناسب برای خشکی و محدودیت حرکتی",
     duration: "60 دقیقه",
     price: "$85",
-    type:'flexion'
+    type:'movement-stretching'
   },
+{
+  name: "ماساژ ورزشی",
+  description:
+    "ترکیبی از تکنیک مراقبتی، فشردگی و کشش عضلانی برای کمک به ریکاوری، آماده‌سازی بدن پیش از فعالیت و کاهش حس گرفتگی پس از تمرین.",
+  suitableFor: "مناسب برای ورزشکاران و ریکاوری پس از فعالیت",
+  duration: "90 دقیقه",
+  price: "$99",
+  type: "sports-massage"
+},
 ];
 
 function ServicesHero() {

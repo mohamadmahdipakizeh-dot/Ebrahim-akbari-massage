@@ -7,9 +7,9 @@ export default function MainLayout() {
     <div className="app-layout">
       <Header />
 
-      <main className="main-content">
+      <section className="main-content">
         <Outlet />
-      </main>
+      </section>
 
       <Footer />
     </div>

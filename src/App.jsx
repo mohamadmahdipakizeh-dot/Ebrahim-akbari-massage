@@ -1,5 +1,6 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import MainLayout from "./components/layout/MainLayout";
+import ScrollToTop from "./components/layout/ScrollToTop";
 import Home from "./pages/Home";
 import Services from "./pages/Services";
 import About from "./pages/About"
@@ -12,7 +13,7 @@ function NotFound() {
   return (
     <div className="container page-placeholder">
       <h1>صفحه پیدا نشد</h1>
-      <a href="/">بازگشت به صفحه اصلی</a>
+      <Link to="/">بازگشت به صفحه اصلی</Link>
     </div>
   );
 }
@@ -20,6 +21,7 @@ function NotFound() {
 export default function App() {
   return (
     <BrowserRouter basename="/ebrahim-akbari-massage">
+      <ScrollToTop />
       <Routes>
         <Route element={<MainLayout />}>
           <Route path="/" element={<Home />} />

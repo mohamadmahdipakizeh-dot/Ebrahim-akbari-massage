@@ -1,20 +1,56 @@
 import { useEffect, useMemo, useRef, useState } from "react";
-import {  useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import "../components/styles/reservation.css";
 
 const SERVICES = [
-  { id: "relaxing", name: "ماساژ ریلکسی", duration: 60, price: 80, icon: "leaf" },
-  { id: "deep-tissue", name: "ماساژ بافت عمیق", duration: 60, price: 95, icon: "hands" },
-  { id: "hot-stone", name: "ماساژ سنگ داغ", duration: 90, price: 120, icon: "stone" },
-  { id: "cupping", name: "ماساژ بادکش", duration: 60, price: 90, icon: "cupping" },
-  { id: "movement-stretching", name: "ماساژ حرکتی و کششی", duration: 60, price: 85, icon: "stretch" },
-  {id: "sport-massage", name: "ماساژ ورزشی", duration: 75, price: 150, icon: ""}
+  {
+    id: "relaxing",
+    name: "ماساژ ریلکسی",
+    duration: 60,
+    price: 80,
+    icon: "leaf",
+  },
+  {
+    id: "deep-tissue",
+    name: "ماساژ بافت عمیق",
+    duration: 60,
+    price: 95,
+    icon: "hands",
+  },
+  {
+    id: "hot-stone",
+    name: "ماساژ سنگ داغ",
+    duration: 90,
+    price: 120,
+    icon: "stone",
+  },
+  {
+    id: "cupping",
+    name: "ماساژ بادکش",
+    duration: 60,
+    price: 90,
+    icon: "cupping",
+  },
+  {
+    id: "movement-stretching",
+    name: "ماساژ حرکتی و کششی",
+    duration: 60,
+    price: 85,
+    icon: "stretch",
+  },
+  {
+    id: "sports-massage",
+    name: "ماساژ ورزشی",
+    duration: 90,
+    price: 99,
+    icon: "sports",
+  },
 ];
 
 const STORAGE_KEY = "ebrahimAkbariMassageReservations";
 const HOURS = Array.from(
   { length: 13 },
-  (_, index) => `${String(index + 9).padStart(2, "0")}:00`
+  (_, index) => `${String(index + 9).padStart(2, "0")}:00`,
 );
 const PERSIAN_DIGITS = "۰۱۲۳۴۵۶۷۸۹";
 const ARABIC_DIGITS = "٠١٢٣٤٥٦٧٨٩";
@@ -58,7 +94,7 @@ function getServiceFromSearch(search) {
       (service) =>
         service.id === normalized ||
         service.name === requestedService ||
-        service.name.toLowerCase() === normalized
+        service.name.toLowerCase() === normalized,
     )?.id ?? ""
   );
 }
@@ -108,6 +144,21 @@ function ServiceIcon({ type }) {
       </svg>
     );
   }
+  if (type === "sports") {
+    return (
+      <svg viewBox="0 0 48 48" aria-hidden="true">
+        {/* A stylized lightning/energy bolt to represent athletic performance and recovery */}
+        <path
+          d="M32 4L16 24h10l-6 20 16-20h-10l6-20Z"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      </svg>
+    );
+  }
 
   return (
     <svg viewBox="0 0 48 48" aria-hidden="true">
@@ -123,10 +174,10 @@ export default function Reservation() {
   const fieldsRef = useRef(null);
 
   const [selectedService, setSelectedService] = useState(() =>
-    getServiceFromSearch(location.search)
+    getServiceFromSearch(location.search),
   );
   const [cameFromServiceCard, setCameFromServiceCard] = useState(() =>
-    Boolean(getServiceFromSearch(location.search))
+    Boolean(getServiceFromSearch(location.search)),
   );
   const [form, setForm] = useState({
     fullName: "",
@@ -147,7 +198,8 @@ export default function Reservation() {
 
       window.requestAnimationFrame(() => {
         fieldsRef.current?.scrollIntoView({
-          behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches
+          behavior: window.matchMedia("(prefers-reduced-motion: reduce)")
+            .matches
             ? "auto"
             : "smooth",
           block: "start",
@@ -160,7 +212,7 @@ export default function Reservation() {
 
   const chosenService = useMemo(
     () => SERVICES.find((service) => service.id === selectedService),
-    [selectedService]
+    [selectedService],
   );
 
   function updateField(event) {
@@ -196,7 +248,7 @@ export default function Reservation() {
     const card = carousel.querySelector(".reservation-service-card");
     const amount = (card?.getBoundingClientRect().width ?? 280) + 16;
     const reduceMotion = window.matchMedia(
-      "(prefers-reduced-motion: reduce)"
+      "(prefers-reduced-motion: reduce)",
     ).matches;
 
     carousel.scrollBy({
@@ -204,8 +256,6 @@ export default function Reservation() {
       behavior: reduceMotion ? "auto" : "smooth",
     });
   }
-
-
 
   function validate() {
     const nextErrors = {};
@@ -260,14 +310,12 @@ export default function Reservation() {
     };
 
     try {
-      const stored = JSON.parse(
-        localStorage.getItem(STORAGE_KEY) || "[]"
-      );
+      const stored = JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
       const previousRequests = Array.isArray(stored) ? stored : [];
 
       localStorage.setItem(
         STORAGE_KEY,
-        JSON.stringify([...previousRequests, request])
+        JSON.stringify([...previousRequests, request]),
       );
 
       setConfirmation(request);
@@ -292,16 +340,17 @@ export default function Reservation() {
   return (
     <>
       <main className="reservation-page">
-        <section className="reservation-hero" aria-labelledby="reservation-title">
+        <section
+          className="reservation-hero"
+          aria-labelledby="reservation-title"
+        >
           <div className="container reservation-hero-container">
             <div className="reservation-hero-content">
               <p className="section-label reservation-hero-label">
                 درخواست رزرو
               </p>
               <h1 id="reservation-title">درخواست رزرو ماساژ</h1>
-              <p>
-                تجربه آرامش خود را با انتخاب ماساژ مناسب آغاز کنید.
-              </p>
+              <p>تجربه آرامش خود را با انتخاب ماساژ مناسب آغاز کنید.</p>
             </div>
           </div>
         </section>
@@ -405,7 +454,10 @@ export default function Reservation() {
                   </strong>
                 </div>
 
-                <button type="button" onClick={() => setCameFromServiceCard(false)}>
+                <button
+                  type="button"
+                  onClick={() => setCameFromServiceCard(false)}
+                >
                   تغییر خدمت
                 </button>
               </div>
@@ -443,7 +495,10 @@ export default function Reservation() {
                     required
                   />
                   {errors.fullName && (
-                    <p id="reservation-name-error" className="reservation-error">
+                    <p
+                      id="reservation-name-error"
+                      className="reservation-error"
+                    >
                       {errors.fullName}
                     </p>
                   )}
@@ -451,8 +506,7 @@ export default function Reservation() {
 
                 <div className="reservation-field">
                   <label htmlFor="reservation-phone">
-                    شماره تماس{" "}
-                    <span className="reservation-required">*</span>
+                    شماره تماس <span className="reservation-required">*</span>
                   </label>
                   <input
                     id="reservation-phone"
@@ -472,7 +526,10 @@ export default function Reservation() {
                     required
                   />
                   {errors.phone && (
-                    <p id="reservation-phone-error" className="reservation-error">
+                    <p
+                      id="reservation-phone-error"
+                      className="reservation-error"
+                    >
                       {errors.phone}
                     </p>
                   )}
@@ -480,8 +537,7 @@ export default function Reservation() {
 
                 <div className="reservation-field">
                   <label htmlFor="reservation-date">
-                    روز مراجعه{" "}
-                    <span className="reservation-required">*</span>
+                    روز مراجعه <span className="reservation-required">*</span>
                   </label>
                   <input
                     id="reservation-date"
@@ -497,7 +553,10 @@ export default function Reservation() {
                     required
                   />
                   {errors.date && (
-                    <p id="reservation-date-error" className="reservation-error">
+                    <p
+                      id="reservation-date-error"
+                      className="reservation-error"
+                    >
                       {errors.date}
                     </p>
                   )}
@@ -527,7 +586,10 @@ export default function Reservation() {
                     ))}
                   </select>
                   {errors.time && (
-                    <p id="reservation-time-error" className="reservation-error">
+                    <p
+                      id="reservation-time-error"
+                      className="reservation-error"
+                    >
                       {errors.time}
                     </p>
                   )}
@@ -605,13 +667,22 @@ export default function Reservation() {
           </div>
         </section>
 
-        <section className="reservation-guide" aria-labelledby="reservation-guide-title">
+        <section
+          className="reservation-guide"
+          aria-labelledby="reservation-guide-title"
+        >
           <div className="container reservation-guide-inner">
             <span className="reservation-guide-icon" aria-hidden="true">
               <svg viewBox="0 0 48 48" fill="none">
                 <circle cx="24" cy="24" r="17" />
                 <path d="M24 20v10" />
-                <circle cx="24" cy="15" r="1.5" fill="currentColor" stroke="none" />
+                <circle
+                  cx="24"
+                  cy="15"
+                  r="1.5"
+                  fill="currentColor"
+                  stroke="none"
+                />
               </svg>
             </span>
 
